@@ -51,7 +51,7 @@ setupGnome() {
     time sudo systemctl set-default multi-user.target
 }
 
-read -p "install necessary binaries? (y or n): " doit
+read -p "install Gnome desktop? (y or n): " doit
 if [ $doit = "y" ]; then
     setupGnome
 fi
@@ -291,7 +291,7 @@ setupDocker() {
     sudo usermod -aG docker $USER
 }
 
-read -p "setup Flux? (y or n): " doit
+read -p "setup Docker? (y or n): " doit
 if [ $doit = "y" ]; then
     setupDocker
 fi
