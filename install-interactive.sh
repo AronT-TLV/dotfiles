@@ -32,7 +32,7 @@ updateUbuntu() {
     time sudo apt update -y
     time sudo apt upgrade -y
     if [ ! -d "$HOME/.local/bin" ]; then
-        time sudo apt install apt-transport-https ca-certificates curl software-properties-common build-essential procps file git gnupg lsb-release fonts-firacode fonts-cascadia-code -y
+        time sudo apt install apt-transport-https ca-certificates curl software-properties-common build-essential procps file git gnupg lsb-release fonts-firacode fonts-cascadia-code nvim -y
         time mkdir -p $HOME/.local/bin
     fi
 }
@@ -150,6 +150,7 @@ setupAnaconda() {
     chmod +x Mambaforge-4.10.3-5-Linux-x86_64.sh
     time ./Mambaforge-4.10.3-5-Linux-x86_64.sh -b
     time mambaforge/bin/conda init bash
+    time rm -f Mambaforge-4.10.3-5-Linux-x86_64.sh
 }
 
 read -p "setup Anaconda? (y or n): " doit
@@ -215,6 +216,25 @@ setupSpark() {
 read -p "setup Spark? (y or n): " doit
 if [ $doit = "y" ]; then
     setupSpark
+fi
+doit="n"
+
+#####################
+# Setup Julia
+#####################
+setupJulia() {
+    time tar zxvf julia-1.6.3-linux-x86_64.tar.gz
+    time wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.3-linux-x86_64.tar.gz
+    time tar zxvf julia-1.6.3-linux-x86_64.tar.gz
+    time sudo mv julia-1.6.3 /opt
+    time sudo ln -s /opt/julia-1.6.3/bin/julia /usr/local/bin/julia
+    time rm -f julia-1.6.3-linux-x86_64.tar.gz
+    time conda env create --file julia.yml
+}
+
+read -p "setup Julia? (y or n): " doit
+if [ $doit = "y" ]; then
+    setupJulia
 fi
 doit="n"
 
@@ -309,6 +329,9 @@ setupZSH() {
     time git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
     time cp ./zshenv $HOME/.zshenv
     time cp ./zshrc $HOME/.zshrc
+    time cp ./tmux.conf $HOME/.tmux.conf
+    time mkdir $HOME/conf/nvim
+    time cp ./init.vim $HOME/.conf/nvim/
 
     if [ $brewin = "y" ]; then
         echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>$HOME/.zshrc

@@ -116,6 +116,7 @@ export SAVEHIST=20000
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vi=nvim
 
 # modify agnoster prompt
 prompt_context() {}

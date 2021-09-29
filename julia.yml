@@ -1,0 +1,41 @@
+name: julia
+channels:
+  - conda-forge
+  - bokeh
+  - plotly
+  - defaults
+dependencies:
+  - asyncpg
+  - bokeh
+  - dalex
+  - r-dalex
+  - eli5
+  - findspark
+  - geopandas
+  - jupyterlab
+  - mapbox
+  - mapboxgl
+  - matplotlib
+  - missingno
+  - notedown
+  - numpy
+  - pip
+  - plotly
+  - pydot
+  - pysal
+  - python=3.9
+  - python-dotenv
+  - python-graphviz
+  - r-base
+  - r-essentials
+  - requests
+  - scikit-learn
+  - scipy
+  - seaborn
+  - sqlalchemy
+  - statsmodels
+  - xgboost
+  - xlrd
+  - pip:
+    - py-postgresql
+ 
