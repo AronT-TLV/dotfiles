@@ -32,7 +32,7 @@ updateUbuntu() {
     time sudo apt update -y
     time sudo apt upgrade -y
     if [ ! -d "$HOME/.local/bin" ]; then
-        time sudo apt install apt-transport-https ca-certificates curl software-properties-common build-essential procps file git gnupg lsb-release fonts-firacode fonts-cascadia-code nvim -y
+        time sudo apt install apt-transport-https ca-certificates curl software-properties-common build-essential procps file git gnupg lsb-release fonts-firacode fonts-cascadia-code neovim direnv -y
         time mkdir -p $HOME/.local/bin
     fi
 }
@@ -131,7 +131,7 @@ setupAzure() {
     time curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
     echo "setup Azcopy"
-    time curl -sL https://azcopyvnext.azureedge.net/release20210415/azcopy_linux_amd64_10.11.0.tar.gz | sudo tar xvzf - -C /usr/local/bin --strip-components=1
+    time curl -sL https://aka.ms/downloadazcopy-v10-linux | sudo tar xvzf - -C /usr/local/bin --strip-components=1
     sudo rm /usr/local/bin/NOTICE.txt
 }
 
