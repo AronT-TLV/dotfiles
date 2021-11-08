@@ -147,10 +147,10 @@ doit="n"
 setupAnaconda() {
     echo "setup Anaconda"
     time wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
-    time chmod +x Mambaforge-Linux-x86_64.sh*.sh
+    time chmod +x Mambaforge-Linux-x86_64.sh
     time ./Mambaforge-Linux-x86_64.sh -b
     time mambaforge/bin/conda init bash
-    time rm -f Mambaforge-4.10.3-5-Linux-x86_64.sh
+    time rm -f Mambaforge-Linux-x86_64.sh
 }
 
 read -p "setup Anaconda? (y or n): " doit

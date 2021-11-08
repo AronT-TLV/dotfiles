@@ -29,7 +29,7 @@ updateUbuntu() {
     time sudo apt update -y
     time sudo apt upgrade -y
     if [ ! -d "$HOME/.local/bin" ]; then
-        time sudo apt install apt-transport-https ca-certificates curl software-properties-common build-essential procps file git gnupg lsb-release fonts-firacode fonts-cascadia-code -y
+        time sudo apt install apt-transport-https ca-certificates curl software-properties-common build-essential procps file git gnupg lsb-release fonts-firacode fonts-cascadia-code neovim direnv -y
         time mkdir -p $HOME/.local/bin
     fi
 }
@@ -44,7 +44,7 @@ setupAzure() {
     time curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
     echo "setup Azcopy"
-    time curl -sL https://azcopyvnext.azureedge.net/release20210415/azcopy_linux_amd64_10.11.0.tar.gz | sudo tar xvzf - -C /usr/local/bin --strip-components=1
+    time curl -sL https://aka.ms/downloadazcopy-v10-linux | sudo tar xvzf - -C /usr/local/bin --strip-components=1
     sudo rm /usr/local/bin/NOTICE.txt
 }
 
@@ -56,11 +56,11 @@ setupAzure
 #####################
 setupAnaconda() {
     echo "setup Anaconda"
-    time wget https://github.com/conda-forge/miniforge/releases/download/4.10.3-5/Mambaforge-4.10.3-5-Linux-x86_64.sh
-    chmod +x Mambaforge-4.10.3-5-Linux-x86_64.sh
-    time ./Mambaforge-4.10.3-5-Linux-x86_64.sh -b
+    time wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
+    time chmod +x Mambaforge-Linux-x86_64.sh
+    time ./Mambaforge-Linux-x86_64.sh -b
     time mambaforge/bin/conda init bash
-}
+    time rm -f Mambaforge-Linux-x86_64.sh}
 
 setupAnaconda
 
@@ -76,6 +76,9 @@ setupOHMYZSH() {
     time git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
     time cp ./zshenv $HOME/.zshenv
     time cp ./zshrc $HOME/.zshrc
+    time cp ./tmux.conf $HOME/.tmux.conf
+    time mkdir -p $HOME/conf/nvim
+    time cp ./init.vim $HOME/.config/nvim/
 
     $HOME/mambaforge/bin/conda init zsh
 
