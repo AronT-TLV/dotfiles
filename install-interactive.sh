@@ -327,11 +327,12 @@ setupZSH() {
     time git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/plugins/zsh-autosuggestions
     time git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
     time git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
+    time git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
     time cp ./zshenv $HOME/.zshenv
     time cp ./zshrc $HOME/.zshrc
     time cp ./tmux.conf $HOME/.tmux.conf
-    time mkdir $HOME/conf/nvim
-    time cp ./init.vim $HOME/.conf/nvim/
+    time mkdir -p $HOME/conf/nvim
+    time cp ./init.vim $HOME/.config/nvim/
 
     if [ $brewin = "y" ]; then
         echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>$HOME/.zshrc
